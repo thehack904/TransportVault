@@ -99,9 +99,9 @@ The MVP (Minimum Viable Product) is focused on proving these core capabilities:
 
 The following are explicitly out of scope for the MVP:
 
-- Full Acronis replacement
-- Full Ventoy replacement
-- Universal ISO boot support
+- General-purpose commercial backup suite feature parity
+- Generic boot-any-ISO compatibility
+- Unvalidated installer media support
 - Cloud backup
 - Incremental backup
 - Enterprise management console
@@ -201,7 +201,7 @@ The following capabilities are planned for post-MVP releases. See [ROADMAP.md](R
 ## Repository Structure
 
 ```
-TransportVault-Private/
+TransportVault/
 ├── README.md                  — This document
 ├── CHANGELOG.md               — Version history
 ├── ROADMAP.md                 — Planned features
