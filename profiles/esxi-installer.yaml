@@ -1,0 +1,9 @@
+name: ESXi Installer
+type: installer
+path: /vault/isos/esxi-kickstart.iso
+boot_mode: uefi
+supported_versions:
+  - "7.0"
+  - "8.0"
+notes: Automated ESXi deployment media for supported VMware hypervisor versions.
+enabled: true

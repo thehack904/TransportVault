@@ -1,0 +1,9 @@
+name: GParted Live
+type: utility
+path: /vault/isos/gparted-live.iso
+boot_mode: uefi
+supported_versions:
+  - "1.5"
+  - "1.6"
+notes: Disk partitioning and recovery utility for pre-install and break/fix workflows.
+enabled: true

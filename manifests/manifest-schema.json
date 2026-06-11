@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://transportvault.local/schemas/image-manifest.schema.json",
+  "title": "TransportVault Image Manifest",
+  "description": "Schema describing captured and restorable golden images stored in the TransportVault vault.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "image_name",
+    "image_version",
+    "image_type",
+    "created_at",
+    "created_by",
+    "source_hostname",
+    "source_disk",
+    "source_disk_size",
+    "partition_layout",
+    "tool_version",
+    "hash_algorithm",
+    "sha256",
+    "notes"
+  ],
+  "properties": {
+    "image_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable name for the image."
+    },
+    "image_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Version or release label for the image."
+    },
+    "image_type": {
+      "type": "string",
+      "enum": [
+        "rhel-golden-image",
+        "windows-golden-image",
+        "esxi-golden-image"
+      ],
+      "description": "Supported golden image family."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp indicating when the manifest was created."
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Operator or automation identity that created the image."
+    },
+    "source_hostname": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Hostname of the source system used to capture the image."
+    },
+    "source_disk": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Disk device identifier captured from the source system."
+    },
+    "source_disk_size": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Total size of the captured source disk in bytes."
+    },
+    "partition_layout": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered partition metadata describing the restorable layout.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "partition_number",
+          "filesystem",
+          "size_bytes",
+          "mount_point",
+          "bootable"
+        ],
+        "properties": {
+          "partition_number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "filesystem": {
+            "type": "string",
+            "minLength": 1
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "mount_point": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "bootable": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "tool_version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "TransportVault tool version used to capture the image."
+    },
+    "hash_algorithm": {
+      "type": "string",
+      "enum": [
+        "sha256"
+      ],
+      "description": "Digest algorithm used for verification."
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[A-Fa-f0-9]{64}$",
+      "description": "SHA-256 digest of the captured image payload."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form operator notes about the image."
+    }
+  }
+}

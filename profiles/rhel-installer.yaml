@@ -1,0 +1,9 @@
+name: RHEL Auto Installer
+type: installer
+path: /vault/isos/rhel-kickstart.iso
+boot_mode: uefi
+supported_versions:
+  - "8"
+  - "9"
+notes: Kickstart-enabled RHEL installer media used for standardized provisioning.
+enabled: true
